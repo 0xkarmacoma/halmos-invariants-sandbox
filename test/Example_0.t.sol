@@ -9,7 +9,7 @@ import {MiniVat} from "src/MiniVat.sol";
 // this is the OG example that shows how to emulate stateful testing from a single test (check_minivat_n_full_symbolic)
 // run:
 //   halmos --contract MiniVatTest_0 --function check_minivat_n_full_symbolic
-contract MiniVatTest_0 is Test, SymTest {
+contract Example_0 is Test, SymTest {
     MiniVat public minivat;
 
     function setUp() public {
