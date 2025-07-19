@@ -1,0 +1,55 @@
+name: Halmos Invariant Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  halmos:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example:
+          - { name: "Example_0", contract: "Example_0", function: "check_minivat_n_full_symbolic" }
+          - { name: "Example_1", contract: "Example_1", function: "check_vat_createCalldata" }
+          - { name: "Example_2", contract: "Example_2", function: "check_vat_snapshotState" }
+          - { name: "Example_3", contract: "Example_3", function: "check_vat_generalized" }
+          - { name: "Example_4", contract: "Example_4", function: "invariant_dai" }
+      fail-fast: false  # Continue running other examples even if one fails
+
+    name: "Halmos ${{ matrix.example.name }}"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install Foundry
+      uses: foundry-rs/foundry-toolchain@v1
+      with:
+        version: nightly
+
+    - name: Print Foundry version
+      run: forge --version
+
+    - name: Install the latest version of uv
+      uses: astral-sh/setup-uv@v6
+
+    - name: Print uv version
+      run: uv --version
+
+    - name: Install halmos with uv
+      run: uv tool install --python 3.13 halmos
+
+    - name: Print halmos version
+      run: halmos --version
+
+    - name: Run halmos ${{ matrix.example.name }} ${{ matrix.example.function }} (expect failures)
+      run: |
+        # We expect halmos to find invariant violations (exit code 1)
+        # So we invert the exit code: pass if halmos fails, fail if halmos passes
+        ! halmos --contract ${{ matrix.example.contract }} --function ${{ matrix.example.function }}
