@@ -7,8 +7,11 @@ import {MiniVat} from "src/MiniVat.sol";
 
 // adapted from https://github.com/aviggiano/property-based-testing-benchmark/blob/main/projects/dai-certora/test/MiniVat.t.sol
 // this is the OG example that shows how to emulate stateful testing from a single test (check_minivat_n_full_symbolic)
-// run:
-//   halmos --contract MiniVatTest_0 --function check_minivat_n_full_symbolic
+
+// run with:
+//   halmos --contract Example_0 --function check_minivat_n_full_symbolic
+
+/// @custom:halmos --early-exit
 contract Example_0 is Test, SymTest {
     MiniVat public minivat;
 

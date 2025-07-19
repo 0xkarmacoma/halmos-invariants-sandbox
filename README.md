@@ -1,66 +1,34 @@
-## Foundry
+## Halmos Invariants Sandbox
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### Quick Start
 
-Foundry consists of:
+```sh
+# install uv if you don't have it already
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+# install halmos
+uv tool install --python 3.13 halmos
 
-## Documentation
+# or upgrade it
+uv tool upgrade halmos
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+# version number should be >=0.3.0
+halmos --version
 ```
 
-### Test
 
-```shell
-$ forge test
-```
+### Read the post
 
-### Format
+Draft: https://www.notion.so/karmacoma/Invariant-Testing-In-Halmos-v0-3-0-draft-21527400706e802fa5f2c65487072bb6?source=copy_link
 
-```shell
-$ forge fmt
-```
 
-### Gas Snapshots
+### Run the examples
 
-```shell
-$ forge snapshot
-```
+The examples from the post are under [test/](https://github.com/0xkarmacoma/halmos-invariants-sandbox/tree/main/test).
 
-### Anvil
+Each example has instructions on how to run it.
 
-```shell
-$ anvil
-```
 
-### Deploy
+### Disclaimer
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+_These smart contracts and code are being provided as is. No guarantee, representation or warranty is being made, express or implied, as to the safety or correctness of the user interface or the smart contracts and code. They have not been audited and as such there can be no assurance they will work as intended, and users may experience delays, failures, errors, omissions or loss of transmitted information. THE SMART CONTRACTS AND CODE CONTAINED HEREIN ARE FURNISHED AS IS, WHERE IS, WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, NON-INFRINGEMENT OR FITNESS FOR ANY PARTICULAR PURPOSE. Further, use of any of these smart contracts and code may be restricted or prohibited under applicable law, including securities laws, and it is therefore strongly advised for you to contact a reputable attorney in any jurisdiction where these smart contracts and code may be accessible for any questions or concerns with respect thereto. Further, no information provided in this repo should be construed as investment advice or legal advice for any particular facts or circumstances, and is not meant to replace competent counsel. a16z is not liable for any use of the foregoing, and users should proceed with caution and use at their own risk. See a16z.com/disclosures for more info._
